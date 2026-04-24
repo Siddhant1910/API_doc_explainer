@@ -22,21 +22,28 @@ The **API Documentation Explainer Agent** is a production-grade agentic system t
 
 The system uses a **Multi-Provider Load Balancing** architecture to ensure maximum speed and reliability:
 
-```mermaid
-flowchart TD
-    A[User Input] --> B[Intent Agent]
-    B -->|Groq: Classify Intent| C[Planner Agent]
-    C -->|Groq: Build Execution Steps| D[Tool Agent]
-    D -->|Tavily: Live Web Search| E[Generator Agent]
-    E -->|Gemini: High-Context JSON Generation| F[Judge Agent]
-    F -->|Groq: Critical Evaluation & Scoring| G[Streamlit UI]
-    
-    style B fill:#f9f,stroke:#333,stroke-width:2px
-    style C fill:#f9f,stroke:#333,stroke-width:2px
-    style D fill:#bbf,stroke:#333,stroke-width:2px
-    style E fill:#bfb,stroke:#333,stroke-width:2px
-    style F fill:#f9f,stroke:#333,stroke-width:2px
-    style G fill:#ff9,stroke:#333,stroke-width:2px
+![Architecture Diagram](docs/architecture.png)
+
+```
+User Input
+    │
+    ▼
+Intent Agent (Groq)    ← ultra-fast classification
+    │
+    ▼
+Planner Agent (Groq)   ← builds execution steps
+    │
+    ▼
+Tool Agent (Tavily)    ← fetches live data via Web Search
+    │
+    ▼
+Generator Agent (Gemini) ← high-context JSON generation (w/ Multi-Key Rotation)
+    │
+    ▼
+Judge Agent (Groq)     ← critical evaluation & scoring
+    │
+    ▼
+Streamlit UI           ← Premium CSS, Crimson Pro typography, Custom HTML Cards
 ```
 
 ---
