@@ -2,7 +2,7 @@
 
 > An agentic AI web app that understands, explains, and evaluates any API in under 5 minutes.
 
-[![Live Demo](https://img.shields.io/badge/Live-Railway-blueviolet)](https://your-railway-url.railway.app)
+[![Live Demo](https://img.shields.io/badge/Live-Streamlit-red)](https://apidocexplainer.streamlit.app/)
 
 ---
 
@@ -90,6 +90,28 @@ streamlit run app.py
 
 ---
 
+## 🦙 100% Local Execution (Ollama)
+
+If you or another user wants to run the entire pipeline locally without any API costs (using your own CPU/GPU), the system natively supports **Ollama**. 
+
+By changing the `.env` variable to `LLM_PROVIDER=ollama`, the system automatically overrides the Groq/Gemini load balancing and routes **all** agents to your local model.
+
+1. Install [Ollama](https://ollama.com/)
+2. Download a fast local model, e.g., Llama 3.1 or 3.2:
+   ```bash
+   ollama pull llama3.2
+   ```
+3. Update your `.env` file:
+   ```env
+   LLM_PROVIDER=ollama
+   OLLAMA_MODEL=llama3.2
+   ```
+4. Run the app: `streamlit run app.py`
+
+*(Note: `llama3.1` or `qwen2.5-coder:7b` are highly recommended for the best local JSON formatting performance).*
+
+---
+
 ## 🧪 Running Tests
 
 ```bash
@@ -98,12 +120,19 @@ python -m pytest tests/ -v
 
 ---
 
-## 🚀 Deployment (Railway)
+## 🚀 Deployment (Streamlit Community Cloud)
 
-1. Push to GitHub
-2. Create a new Railway project → connect your repo
-3. Add environment variables: `LLM_PROVIDER`, `GROQ_API_KEY`, `GEMINI_API_KEYS`, `TAVILY_API_KEY`
-4. Railway auto-detects the `Procfile` and deploys
+1. Push your repository to GitHub.
+2. Log in to [Streamlit Community Cloud](https://share.streamlit.io/).
+3. Click "New app", select your repo, branch, and set the main file path to `app.py`.
+4. Click on "Advanced Settings" before deploying and add your Environment Secrets:
+   ```toml
+   LLM_PROVIDER="groq"
+   GROQ_API_KEY="your_key_here"
+   GEMINI_API_KEYS="key1,key2,key3"
+   TAVILY_API_KEY="your_key_here"
+   ```
+5. Click **Deploy**!
 
 ---
 
@@ -129,7 +158,6 @@ api-doc-explainer/
 │   └── helpers.py         ← Pipeline orchestrator
 ├── tests/
 │   └── test_agents.py     ← Unit + integration tests
-├── Procfile               ← Railway deployment
 ├── requirements.txt
 └── .env
 ```
@@ -145,4 +173,4 @@ api-doc-explainer/
 | **Inference ⚡** | **Groq** (llama-3.3-70b-versatile) |
 | **Reasoning 🧠** | **Google Gemini 2.5 Flash** |
 | **Search tool** | Tavily Search API |
-| **Deployment** | Railway |
+| **Deployment** | Streamlit Community Cloud |
