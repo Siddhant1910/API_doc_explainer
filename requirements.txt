@@ -1,0 +1,7 @@
+streamlit
+tavily-python
+google-genai
+ollama
+python-dotenv
+requests
+pytest
