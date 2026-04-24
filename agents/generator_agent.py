@@ -60,7 +60,7 @@ _SCHEMA_COMPARE = """
 {
   "api_name": "Names of the APIs being compared",
   "api_fit_analysis": "Detailed technical analysis contrasting the APIs.",
-  "api_comparison_table": "Must be a raw Markdown string containing a table (e.g. '| API | Cost |...\\n|---|---|'), DO NOT output a JSON array.",
+  "api_comparison_table": "Must be a raw Markdown string containing a table (e.g. '| API | Pricing | Features |...\\n|---|---|---|'). DO NOT output a JSON array. ALWAYS include a 'Pricing' column.",
   "code": {
     "python": "// Comprehensive properly formatted Python code example comparing both if applicable",
     "javascript": "// Comprehensive properly formatted JavaScript code example"
@@ -72,7 +72,7 @@ _SCHEMA_RECOMMEND = """
 {
   "api_name": "Top Recommended APIs",
   "api_fit_analysis": "Overview of the recommended APIs for the use-case.",
-  "api_comparison_table": "Must be a raw Markdown string containing a table (e.g. '| API | Cost |...\\n|---|---|'), DO NOT output a JSON array.",
+  "api_comparison_table": "Must be a raw Markdown string containing a table (e.g. '| API | Pricing | Features |...\\n|---|---|---|'). DO NOT output a JSON array. ALWAYS include a 'Pricing' column.",
   "code": {
     "python": "// Example Python code snippet for the top recommended API",
     "javascript": "// Example JavaScript code snippet for the top recommended API"
