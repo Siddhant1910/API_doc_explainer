@@ -5,3 +5,4 @@ ollama
 python-dotenv
 requests
 pytest
+groq
