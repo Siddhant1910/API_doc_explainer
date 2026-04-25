@@ -202,11 +202,27 @@ html, body, [data-testid="stAppViewContainer"] {
     --border: #334155;
     --surface:#1E293B;
 }
-h1, h2, h3, h4, h5, h6, p, label, div { color: #F8FAFC !important; }
+h1, h2, h3, h4, h5, h6, p, label { color: #F8FAFC !important; }
+/* Only force white text on normal divs, avoid messing up styled components */
+div:not(.score-pill):not(.alert-card):not(.verdict-quote) { color: #F8FAFC !important; }
+
 .hero-title { color: #F8FAFC !important; border-bottom: 2px solid #334155 !important; }
 .stTextInput input { background: #0B0F19 !important; color: #F8FAFC !important; border-color: #334155 !important; }
 .chip { background: #1E293B; }
 .badge { background: #0F172A; }
+
+/* ── Dark Mode Evaluation Styles ── */
+.score-green  { background: rgba(21, 128, 61, 0.2) !important; color: #4ade80 !important; border-color: #4ade80 !important; }
+.score-amber  { background: rgba(146, 64, 14, 0.2) !important; color: #fbbf24 !important; border-color: #fbbf24 !important; }
+.score-red    { background: rgba(153, 27, 27, 0.2) !important; color: #f87171 !important; border-color: #f87171 !important; }
+
+.verdict-quote { background: #1E293B !important; border-left-color: #3b82f6 !important; color: #e2e8f0 !important; }
+
+/* ── Dark Mode Alert Styles ── */
+.alert-info { background: rgba(59, 130, 246, 0.1) !important; border-color: #3b82f6 !important; color: #e2e8f0 !important; }
+.alert-warning { background: rgba(245, 158, 11, 0.1) !important; border-color: #f59e0b !important; color: #e2e8f0 !important; }
+.alert-success { background: rgba(34, 197, 94, 0.1) !important; border-color: #22c55e !important; color: #e2e8f0 !important; }
+.alert-card * { color: #e2e8f0 !important; }
 </style>
 """
 
