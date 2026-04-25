@@ -87,7 +87,7 @@ def generator_agent(tavily_result: str, intent: dict) -> dict:
     Generate structured API explanation output.
     Returns a dict on success; returns an error dict on failure.
     """
-    llm = get_llm() # Uses the default provider from .env (Groq)
+    llm = get_llm("gemini")  # Use Gemini for large-context generation
     
     intent_type = intent.get("intent", "explain_api")
     if intent_type == "compare_api":
@@ -97,10 +97,13 @@ def generator_agent(tavily_result: str, intent: dict) -> dict:
     else:
         schema = _SCHEMA_EXPLAIN
         
+    # Trim context to avoid token overflow on LLMs (Safe for 8k contexts)
+    tavily_trimmed = tavily_result[:12000] if isinstance(tavily_result, str) else str(tavily_result)[:12000]
+
     prompt = _BASE_PROMPT.format(
         user_query=intent.get("input", "N/A"),
         intent_type=intent_type,
-        tavily_result=tavily_result,
+        tavily_result=tavily_trimmed,
         json_schema=schema
     )
 

@@ -52,7 +52,7 @@ def judge_agent(generated_output: dict) -> dict:
     All four criteria scores are guaranteed to be integers in [1, 10].
     """
     # 1. Initialize LLM
-    llm = get_llm("groq")
+    llm = get_llm("groq")  # Reverted to Groq due to API quotas
     
     # 2. Serialise the output for the prompt (trim large fields to save tokens)
     try:

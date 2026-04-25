@@ -36,8 +36,8 @@ def search(query: str, max_results: int = 5) -> str:
             pieces.append(f"[{title}] ({url})\n{content}")
 
         combined = "\n\n".join(pieces)
-        # Trim to avoid token overflow when feeding into LLM prompts
-        return combined[:2000]
+        # Trim to avoid token overflow but allow enough room for API docs & code
+        return combined[:10000]
 
     except Exception as exc:
         return f"Tavily search error: {exc}"
